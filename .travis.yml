@@ -2,7 +2,7 @@ sudo: required
 
 language: node_js
 node_js:
-  - "8"
+  - "10"
 
 notifications:
   email:
@@ -17,9 +17,9 @@ before_install:
   #- git ls-remote --tags https://chromium.googlesource.com/chromium/src.git > ./TAGS
   #- export CHROMIUM_VERSION=`cat ./TAGS | grep refs | cut -d/ -f3 | sort -rn | head -1`
   # use stable chromium version
-  - export CHROMIUM_VERSION=63.0.3205.0
+  - export CHROMIUM_VERSION=78.0.3899.0
   - echo $CHROMIUM_VERSION
-  - export NODE_VERSION=$(wget -qO- https://nodejs.org/dist/latest-v8.x/ | sed -nE 's|.*>node-v(.*)\.pkg</a>.*|\1|p')
+  - export NODE_VERSION=$(wget -qO- https://nodejs.org/dist/latest-v10.x/ | sed -nE 's|.*>node-v(.*)\.pkg</a>.*|\1|p')
   - echo $NODE_VERSION
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo ${TRAVIS_BRANCH} ; fi`
   - echo $TAG
@@ -32,7 +32,7 @@ install:
   - docker version
   - cd debian
 
-  - git clone https://github.com/onesdk/url-to-pdf-api.git
+  - git clone https://github.com/happier2/url-to-pdf-api.git
   - cd url-to-pdf-api
   - ls -ahl
   - "export PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')"
