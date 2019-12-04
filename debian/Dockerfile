@@ -6,7 +6,7 @@ MAINTAINER Ling <x@e2.to>
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 
-RUN apt-get update -y && apt-get install -yq nodejs && apt-get install -yq npm && apt-get install -yq fontconfig fonts-dejavu && apt-get install -yq fonts-symbola && apt-get install -yq ttf-wqy-microhei && apt-get install -yq ttf-wqy-zenhei && apt-get install -yq xfonts-wqy && apt-get install -yq fonts-ocr-b && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -y && apt-get install -yq nodejs && apt-get install -yq npm && apt-get install -yq fontconfig fonts-dejavu && apt-get install -yq fonts-symbola && apt-get install -yq ttf-wqy-microhei && apt-get install -yq ttf-wqy-zenhei && apt-get install -yq xfonts-wqy && apt-get install -yq fonts-ocr-b && rm -rf /var/lib/apt/lists/* && npm install pm2 -g && pm2 install pm2-logrotate
 
 # COPY node-v${NODE_VERSION}-linux-x64 /root
 
@@ -15,9 +15,6 @@ RUN apt-get update -y && apt-get install -yq nodejs && apt-get install -yq npm &
 # ADD   node-v${NODE_VERSION}-linux-x64/bin/node   /bin
 # ADD   node-v${NODE_VERSION}-linux-x64/bin/npm    /bin
 COPY  url-to-pdf-api                             /root
-RUN   npm install pm2 -g
-RUN   pm2 install pm2-logrotate
-# RUN   pm2 set pm2-logrotate:retain 10
 
 ENV CHROMIUM_VERSION=$CHROMIUM_VERSION \
     NODE_VERSION=$NODE_VERSION \
