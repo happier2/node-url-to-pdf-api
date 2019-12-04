@@ -26,4 +26,4 @@ ENV CHROMIUM_VERSION=$CHROMIUM_VERSION \
 
 EXPOSE 80
 
-ENTRYPOINT ["pm2", "start", "pm2.json"]
+ENTRYPOINT ["pm2-runtime", "start", "pm2.json"]
