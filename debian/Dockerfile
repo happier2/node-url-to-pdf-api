@@ -16,6 +16,8 @@ RUN apt-get update -y && apt-get install -yq nodejs && apt-get install -yq npm &
 # ADD   node-v${NODE_VERSION}-linux-x64/bin/npm    /bin
 COPY  url-to-pdf-api                             /root
 RUN   npm install pm2 -g
+RUN   pm2 install pm2-logrotate
+# RUN   pm2 set pm2-logrotate:retain 10
 
 ENV CHROMIUM_VERSION=$CHROMIUM_VERSION \
     NODE_VERSION=$NODE_VERSION \
