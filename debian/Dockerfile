@@ -4,9 +4,10 @@ ARG CHROMIUM_VERSION
 ARG NODE_VERSION
 MAINTAINER Ling <x@e2.to>
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+# RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && apt-get update -y && apt-get install -yq nodejs && apt-get install -yq npm && apt-get install -yq fontconfig fonts-dejavu && apt-get install -yq fonts-symbola && apt-get install -yq ttf-wqy-microhei && apt-get install -yq ttf-wqy-zenhei && apt-get install -yq xfonts-wqy && apt-get install -yq fonts-ocr-b && rm -rf /var/lib/apt/lists/* && npm install pm2 -g && pm2 install pm2-logrotate
 
-RUN apt-get update -y && apt-get install -yq nodejs && apt-get install -yq npm && apt-get install -yq fontconfig fonts-dejavu && apt-get install -yq fonts-symbola && apt-get install -yq ttf-wqy-microhei && apt-get install -yq ttf-wqy-zenhei && apt-get install -yq xfonts-wqy && apt-get install -yq fonts-ocr-b && rm -rf /var/lib/apt/lists/* && npm install pm2 -g && pm2 install pm2-logrotate
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && apt-get update -y && apt-get install -yq nodejs npm fontconfig fonts-dejavu fonts-symbola ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy fonts-ocr-b && rm -rf /var/lib/apt/lists/* && npm install pm2 -g && pm2 install pm2-logrotate
+
 
 # COPY node-v${NODE_VERSION}-linux-x64 /root
 
