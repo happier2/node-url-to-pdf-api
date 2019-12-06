@@ -10,11 +10,9 @@ RUN mkdir /usr/share/fonts/msyh
 
 ADD https://www.wfonts.com/download/data/2014/06/01/microsoft-yahei/chinese.msyh.ttf /usr/share/fonts/msyh/chinese.msyh.ttf
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && apt-get update -y && apt-get install -yq nodejs npm fontconfig && rm -rf /var/lib/apt/lists/* && npm install pm2 -g && pm2 install pm2-logrotate
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && apt-get update -y && apt-get install -yq nodejs npm fontconfig && echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections && apt-get install -yq ttf-mscorefonts-installer && rm -rf /var/lib/apt/lists/* && npm install pm2 -g && pm2 install pm2-logrotate
 
-RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections && apt-get install -yq ttf-mscorefonts-installer
-
-RUN chmod 644 /usr/share/fonts/msyh/* && cd /usr/share/fonts/msyh && mkfontscale && mkfontdir && fc-cache -fv
+# RUN chmod 644 /usr/share/fonts/msyh/* && cd /usr/share/fonts/msyh && mkfontscale && mkfontdir && fc-cache -fv
 
 # RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && apt-get update -y && apt-get install -yq nodejs npm fontconfig fonts-dejavu fonts-symbola ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy fonts-ocr-b && rm -rf /var/lib/apt/lists/* && npm install pm2 -g && pm2 install pm2-logrotate
 
